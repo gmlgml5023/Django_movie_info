@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+
+{% block title %}영화 상세 페이지{% endblock title %}
+
+{% block content %}
+  <div class="container mt-4">
+    {% if movie.image %}
+      <img src="{{ movie.image.url }}" alt="{{ movie.title }}" class="img-fluid mb-3" style="max-width: 300px; max-height: 400px;"> <!-- 이미지 크기 조정 -->
+    {% else %}
+      <p>이미지가 없습니다.</p>
+    {% endif %}
+    
+    <h2>{{ movie.title }}</h2>
+    <h5>{{ movie.storyline }}</h5>
+    <hr class="my-4">
+    
+    <div class="d-flex justify-content-start mt-4"> <!-- 왼쪽 정렬 -->
+      <a href="{% url 'movies:update' movie.pk %}" class="btn btn-warning me-2">UPDATE</a>
+      <a href="{% url 'movies:delete' movie.pk %}" class="btn btn-danger">DELETE</a>
+    </div>
+    
+    <hr class="my-4">
+    <a href="/movies/" class="btn btn-primary">HOME</a>
+  </div>
+{% endblock content %}
